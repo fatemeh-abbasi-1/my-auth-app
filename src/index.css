@@ -54,6 +54,16 @@ button {
   border: 3px solid rgb(61, 223, 61);
   outline: none;
 }
+.show {
+  font-size: 0.7rem;
+  background-color: #2b2a2a;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+}
+.hide {
+  display: none;
+}
 /* Home */
 .home {
   color: white;
@@ -66,10 +76,10 @@ button {
 }
 
 /* logout */
-.title-logout{
+.title-logout {
   margin-left: 1rem;
 }
-.logout{
+.logout {
   width: 100%;
   max-width: 28rem;
   background-color: #d65312;

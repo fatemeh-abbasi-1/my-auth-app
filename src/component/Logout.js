@@ -6,7 +6,7 @@ const Logout = () => {
   const handleLogout = (e) => {
     localStorage.removeItem("idUser");
     e.preventDefault();
-    navigate("/register");
+    navigate("/show-message");
   };
   return (
     <div className="logout">
