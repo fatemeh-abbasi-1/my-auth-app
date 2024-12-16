@@ -11,9 +11,7 @@ const Login = () => {
     pwdLogin,
     setPwdLogin,
     validNameLogin,
-    setValidNameLogin,
     validPwdLogin,
-    setValidPwdLogin,
     errLogin,
     setErrLogin,
     userRef,
@@ -24,6 +22,8 @@ const Login = () => {
     e.preventDefault();
     if (userId && validNameLogin && validPwdLogin) {
       navigate("/home");
+      setNameLogin("");
+      setPwdLogin("");
     } else {
       setErrLogin(true);
       if (!validNameLogin && !validPwdLogin) {
@@ -58,7 +58,7 @@ const Login = () => {
         />
         <button onClick={(e) => handleLogin(e)}>Login</button>
         {!userId && errLogin && (
-          <h4 style={{ color: "#201f1f" }}>
+          <h4 style={{ color: "red" }}>
             You have not registered yet Or the username or password entered
             incorrectly.!
           </h4>

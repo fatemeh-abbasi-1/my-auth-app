@@ -8,7 +8,12 @@ html {
   font-size: 1rem;
 }
 body {
-  background-color: rgb(15, 15, 15);
+  background-image: linear-gradient(
+    58.2deg,
+    rgba(40, 91, 212, 0.73) -3%,
+    rgba(171, 53, 163, 0.45) 49.3%,
+    rgba(255, 204, 112, 0.37) 97.7%
+  );
   font-size: 1rem;
   overflow-x: hidden;
 }
@@ -28,7 +33,7 @@ h1 {
 section {
   width: 100%;
   max-width: 28rem;
-  background-color: #d65312;
+  background-color: #fff6f6;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -49,10 +54,20 @@ button {
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
+  border: none;
+}
+button {
+  background-color: rgb(248, 192, 250);
+}
+.container-input-help {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .border-green {
-  border: 3px solid rgb(61, 223, 61);
+  border: none;
   outline: none;
+  border-bottom: 3px solid rgb(61, 223, 61);
 }
 .show {
   font-size: 0.7rem;
@@ -66,13 +81,11 @@ button {
 }
 /* Home */
 .home {
-  color: rgb(251, 249, 249);
   margin-top: -6rem;
   margin-bottom: 1rem;
 }
 /* login */
 .help-text {
-  color: rgb(251, 249, 249);
   margin-bottom: 0.5rem;
 }
 
@@ -83,7 +96,12 @@ button {
 .logout {
   width: 100%;
   max-width: 28rem;
-  background-color: #d65312;
+  background-image: linear-gradient(
+    58.2deg,
+    rgba(40, 91, 212, 0.73) -3%,
+    rgba(171, 53, 163, 0.45) 49.3%,
+    rgba(255, 204, 112, 0.37) 97.7%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
