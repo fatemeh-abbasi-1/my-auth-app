@@ -57,7 +57,7 @@ button {
 .show {
   font-size: 0.7rem;
   background-color: #2b2a2a;
-  color: white;
+  color: rgb(251, 249, 249);
   border-radius: 0.5rem;
   padding: 0.6rem;
 }
@@ -66,13 +66,14 @@ button {
 }
 /* Home */
 .home {
-  color: white;
+  color: rgb(251, 249, 249);
   margin-top: -6rem;
   margin-bottom: 1rem;
 }
 /* login */
 .help-text {
-  color: white;
+  color: rgb(251, 249, 249);
+  margin-bottom: 0.5rem;
 }
 
 /* logout */

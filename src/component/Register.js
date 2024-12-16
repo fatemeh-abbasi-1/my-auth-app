@@ -5,10 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
   const {
-    USER_REGEX,
-    PWD_REGEX,
     userRef,
-    setUserRef,
     user,
     setUser,
     pwd,
@@ -27,17 +24,11 @@ const Register = () => {
     setPwdFocus,
     confirmFocus,
     setConfirmFocus,
+    errRegister,
+    setErrRegister,
   } = useAuth();
 
   const navigate = useNavigate();
-  useEffect(() => {
-    setVaidUser(USER_REGEX.test(user));
-  }, [user]);
-
-  useEffect(() => {
-    setValidPwd(PWD_REGEX.test(pwd));
-    setValidConfirm(pwd === confirmPwd);
-  }, [pwd, confirmPwd]);
 
   useEffect(() => {
     userRef.current.focus();
@@ -45,12 +36,16 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("home");
-    const id = Math.random();
-    localStorage.setItem("idUser", JSON.stringify(id));
-    setUser("");
-    setPwd("");
-    setConfirmPwd("");
+    if (vaidUser && validPwd && validConfirm) {
+      navigate("home");
+      const id = Math.random();
+      localStorage.setItem("idUser", JSON.stringify(id));
+      setUser("");
+      setPwd("");
+      setConfirmPwd("");
+    } else {
+      setErrRegister(true);
+    }
   };
 
   return (
@@ -90,9 +85,7 @@ const Register = () => {
           onBlur={() => setPwdFocus(false)}
           value={pwd}
         />
-        <p
-          className={!validPwd && pwdFocus && pwd ? "show" : "hide"}
-        >
+        <p className={!validPwd && pwdFocus && pwd ? "show" : "hide"}>
           8 to 24 characters.
           <br />
           Must include uppercase and lowercase letters, a number and a special
@@ -124,6 +117,13 @@ const Register = () => {
 
         <button onClick={(e) => handleSubmit(e)}>Sign Up</button>
       </form>
+      {errRegister ? (
+        <h4 style={{ color: "#201f1f", marginBottom: "0.5rem" }}>
+          Please enter the requested information.
+        </h4>
+      ) : (
+        ""
+      )}
       <p className="help-text">
         Already registered?
         <br />

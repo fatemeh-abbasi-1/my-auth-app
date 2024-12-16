@@ -3,7 +3,7 @@ import Login from "./component/Login";
 import Logout from "./component/Logout";
 import Home from "./component/Home";
 import ShowMessage from "./component/ShowMessage";
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (

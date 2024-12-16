@@ -28,13 +28,26 @@ export const AuthProvider = ({ children }) => {
   const [validNameLogin, setValidNameLogin] = useState(false);
   const [validPwdLogin, setValidPwdLogin] = useState(false);
 
+  const [errRegister, setErrRegister] = useState(false);
   const [errLogin, setErrLogin] = useState(false);
+
+  useEffect(() => {
+    setVaidUser(USER_REGEX.test(user));
+  }, [user]);
+
+  useEffect(() => {
+    setValidPwd(PWD_REGEX.test(pwd));
+    setValidConfirm(pwd === confirmPwd);
+  }, [pwd, confirmPwd]);
+
+  useEffect(() => {
+    setValidNameLogin(USER_REGEX.test(nameLogin));
+    setValidPwdLogin(PWD_REGEX.test(pwdLogin));
+  }, [pwdLogin, nameLogin]);
 
   return (
     <AuthContext.Provider
       value={{
-        USER_REGEX,
-        PWD_REGEX,
         userId,
         setUserId,
         userRef,
@@ -66,6 +79,8 @@ export const AuthProvider = ({ children }) => {
         setValidPwdLogin,
         errLogin,
         setErrLogin,
+        errRegister,
+        setErrRegister,
       }}
     >
       {children}

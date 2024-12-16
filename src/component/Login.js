@@ -1,12 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const {
-    USER_REGEX,
-    PWD_REGEX,
     userId,
     nameLogin,
     setNameLogin,
@@ -25,18 +23,15 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (userId && validNameLogin && validPwdLogin) {
-      navigate("home");
+      navigate("/home");
     } else {
       setErrLogin(true);
-      setNameLogin("");
-      setPwdLogin("");
+      if (!validNameLogin && !validPwdLogin) {
+        setNameLogin("");
+        setPwdLogin("");
+      }
     }
   };
-
-  useEffect(() => {
-    setValidNameLogin(USER_REGEX.test(nameLogin));
-    setValidPwdLogin(PWD_REGEX.test(pwdLogin));
-  }, [pwdLogin, nameLogin]);
 
   useEffect(() => {
     userRef.current.focus();
@@ -63,10 +58,10 @@ const Login = () => {
         />
         <button onClick={(e) => handleLogin(e)}>Login</button>
         {!userId && errLogin && (
-          <p style={{ color: "white" }}>
+          <h4 style={{ color: "#201f1f" }}>
             You have not registered yet Or the username or password entered
             incorrectly.!
-          </p>
+          </h4>
         )}
       </form>
       <p className="help-text">

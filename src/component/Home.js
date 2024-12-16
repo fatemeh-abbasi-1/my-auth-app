@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <>
-      <h1 className="home">Welcome to the Home page...</h1>
+      <h1 className="home">Welcome to the Home page</h1>
       <button className="btn-logout" onClick={(e) => showLogout(e)}>
         Logout
       </button>
