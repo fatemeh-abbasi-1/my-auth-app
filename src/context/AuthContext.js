@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
 
   const [vaidUser, setVaidUser] = useState(false);
   const [validPwd, setValidPwd] = useState(false);
-
   const [validConfirm, setValidConfirm] = useState(false);
 
   const [userFocus, setUserFocus] = useState(false);

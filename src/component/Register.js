@@ -37,7 +37,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (vaidUser && validPwd && validConfirm) {
-      navigate("home");
+      navigate("/home");
       const id = Math.random();
       localStorage.setItem("idUser", JSON.stringify(id));
       setUser("");
@@ -59,7 +59,13 @@ const Register = () => {
             placeholder="User Name"
             autoComplete="off"
             onChange={(e) => setUser(e.target.value)}
-            className={vaidUser ? " border-green" : ""}
+            className={
+              vaidUser
+                ? " border-green"
+                : errRegister && !vaidUser
+                ? "show-err"
+                : ""
+            }
             aria-describedby="uidnote"
             value={user}
             onFocus={() => setUserFocus(true)}
@@ -79,7 +85,13 @@ const Register = () => {
             type="password"
             placeholder="Password"
             onChange={(e) => setPwd(e.target.value)}
-            className={validPwd ? " border-green" : ""}
+            className={
+              validPwd
+                ? " border-green"
+                : errRegister && !validPwd
+                ? "show-err"
+                : ""
+            }
             onFocus={() => setPwdFocus(true)}
             onBlur={() => setPwdFocus(false)}
             value={pwd}
@@ -106,7 +118,13 @@ const Register = () => {
             autoComplete="off"
             value={confirmPwd}
             onChange={(e) => setConfirmPwd(e.target.value)}
-            className={validConfirm && confirmFocus ? " border-green" : ""}
+            className={
+              validConfirm && confirmFocus && confirmPwd
+                ? "border-green"
+                : errRegister && !confirmPwd
+                ? "show-err"
+                : ""
+            }
             onFocus={() => setConfirmFocus(true)}
             onBlur={() => setConfirmFocus(false)}
           />
@@ -120,13 +138,13 @@ const Register = () => {
 
         <button onClick={(e) => handleSubmit(e)}>Sign Up</button>
       </form>
-      {errRegister ? (
+      {/* {errRegister && (!pwdFocus || !confirmFocus) ? (
         <h4 style={{ color: "red", marginBottom: "0.5rem" }}>
           Please enter the requested information.
         </h4>
       ) : (
         ""
-      )}
+      )} */}
       <p className="help-text">
         Already registered?
         <br />

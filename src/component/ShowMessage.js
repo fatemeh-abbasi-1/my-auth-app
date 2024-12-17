@@ -5,7 +5,7 @@ const ShowMessage = () => {
   return (
     <>
       <h1 style={{ marginBottom: "1rem" }}>You have logged out!</h1>
-      <Link to={"/"} style={{ marginBottom: "1rem" }}>
+      <Link to={"/register"} style={{ marginBottom: "1rem" }}>
         Go to register
       </Link>
       <Link to={"/login"}>Go to login</Link>

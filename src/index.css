@@ -69,6 +69,12 @@ button {
   outline: none;
   border-bottom: 3px solid rgb(61, 223, 61);
 }
+.show-err {
+  border: none;
+  outline: none;
+  border-bottom: 3px solid red;
+}
+
 .show {
   font-size: 0.7rem;
   background-color: #2b2a2a;
