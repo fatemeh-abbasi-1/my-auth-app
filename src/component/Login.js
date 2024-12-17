@@ -55,13 +55,14 @@ const Login = () => {
           onChange={(e) => setPwdLogin(e.target.value)}
         />
         <button onClick={(e) => handleLogin(e)}>Login</button>
-        {!userId ||
-          (errLogin && (
-            <h4 style={{ color: "red" }}>
-              You have not registered yet Or the username or password entered
-              incorrectly.!
-            </h4>
-          ))}
+        {errLogin ? (
+          <h4 style={{ color: "red" }}>
+            You have not registered yet Or the username or password entered
+            incorrectly.!
+          </h4>
+        ) : (
+          ""
+        )}
       </form>
       <p className="help-text">
         Need an Account?
