@@ -136,15 +136,13 @@ const Register = () => {
           </p>
         </div>
 
-        <button onClick={(e) => handleSubmit(e)}>Sign Up</button>
+        <button
+          onClick={(e) => handleSubmit(e)}
+          disabled={vaidUser && validPwd && validConfirm ? false : true}
+        >
+          Sign Up
+        </button>
       </form>
-      {/* {errRegister && (!pwdFocus || !confirmFocus) ? (
-        <h4 style={{ color: "red", marginBottom: "0.5rem" }}>
-          Please enter the requested information.
-        </h4>
-      ) : (
-        ""
-      )} */}
       <p className="help-text">
         Already registered?
         <br />

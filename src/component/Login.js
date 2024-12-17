@@ -54,7 +54,12 @@ const Login = () => {
           value={pwdLogin}
           onChange={(e) => setPwdLogin(e.target.value)}
         />
-        <button onClick={(e) => handleLogin(e)}>Login</button>
+        <button
+          onClick={(e) => handleLogin(e)}
+          disabled={validNameLogin && validPwdLogin ? false : true}
+        >
+          Login
+        </button>
         {errLogin ? (
           <h4 style={{ color: "red" }}>
             You have not registered yet Or the username or password entered
