@@ -1,38 +1,37 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
-  const {
-    userRef,
-    user,
-    setUser,
-    pwd,
-    setPwd,
-    confirmPwd,
-    setConfirmPwd,
-    vaidUser,
-    setVaidUser,
-    validPwd,
-    setValidPwd,
-    validConfirm,
-    setValidConfirm,
-    userFocus,
-    setUserFocus,
-    pwdFocus,
-    setPwdFocus,
-    confirmFocus,
-    setConfirmFocus,
-    errRegister,
-    setErrRegister,
-  } = useAuth();
+  const { userRef, USER_REGEX, PWD_REGEX } = useAuth();
 
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
+
+  const [vaidUser, setVaidUser] = useState(false);
+  const [validPwd, setValidPwd] = useState(false);
+  const [validConfirm, setValidConfirm] = useState(false);
+
+  const [userFocus, setUserFocus] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
+  const [confirmFocus, setConfirmFocus] = useState(false);
+  const [errRegister, setErrRegister] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     userRef.current.focus();
   }, []);
+
+  useEffect(() => {
+    setVaidUser(USER_REGEX.test(user));
+  }, [user]);
+
+  useEffect(() => {
+    setValidPwd(PWD_REGEX.test(pwd));
+    setValidConfirm(pwd === confirmPwd);
+  }, [pwd, confirmPwd]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,11 +71,8 @@ const Register = () => {
             onBlur={() => setUserFocus(false)}
           />
           <p className={!vaidUser && userFocus && user ? "show" : "hide"}>
-            4 to 24 characters.
-            <br />
-            Must begin with a letter.
-            <br />
-            Letters, numbers, underscores, hyphens allowed.
+            4 to 24 characters. Must begin with a letter. Letters, numbers,
+            underscores, hyphens allowed.
           </p>
         </div>
 
@@ -97,12 +93,8 @@ const Register = () => {
             value={pwd}
           />
           <p className={!validPwd && pwdFocus && pwd ? "show" : "hide"}>
-            8 to 24 characters.
-            <br />
-            Must include uppercase and lowercase letters, a number and a special
-            character.
-            <br />
-            Allowed special characters:
+            8 to 24 characters. Must include uppercase and lowercase letters, a
+            number and a special character. Allowed special characters:
             <span aria-label="exclamation mark">!</span>
             <span aria-label="at symbol">@</span>
             <span aria-label="hashtag">#</span>

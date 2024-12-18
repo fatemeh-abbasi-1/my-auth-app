@@ -1,23 +1,24 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-  const {
-    userId,
-    nameLogin,
-    setNameLogin,
-    pwdLogin,
-    setPwdLogin,
-    validNameLogin,
-    validPwdLogin,
-    errLogin,
-    setErrLogin,
-    userRef,
-  } = useAuth();
+  const { userId, userRef, USER_REGEX, PWD_REGEX } = useAuth();
 
   const navigate = useNavigate();
+
+  const [nameLogin, setNameLogin] = useState("");
+  const [pwdLogin, setPwdLogin] = useState("");
+  const [validNameLogin, setValidNameLogin] = useState(false);
+  const [validPwdLogin, setValidPwdLogin] = useState(false);
+  const [errLogin, setErrLogin] = useState(false);
+
+  useEffect(() => {
+    setValidNameLogin(USER_REGEX.test(nameLogin));
+    setValidPwdLogin(PWD_REGEX.test(pwdLogin));
+  }, [pwdLogin, nameLogin]);
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (userId && validNameLogin && validPwdLogin) {
@@ -37,7 +38,7 @@ const Login = () => {
 
   return (
     <section>
-      <h1>Login</h1>
+      <h1>Sign in</h1>
       <form>
         <input
           ref={userRef}
@@ -58,7 +59,7 @@ const Login = () => {
           onClick={(e) => handleLogin(e)}
           disabled={validNameLogin && validPwdLogin ? false : true}
         >
-          Login
+          Sign in
         </button>
         {errLogin ? (
           <h4 style={{ color: "red" }}>
